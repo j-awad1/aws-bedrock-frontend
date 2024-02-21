@@ -54,7 +54,7 @@ if spaceName:
     streamlit_url = url+f"/proxy/{port_number}/"
 else:
     #build studio url
-    streamlit_url=f"https://{domainId}.studio.{region}.sagemaker.awsjupyter/{resourceName}/proxy/{port_number}/"
+    streamlit_url=f"https://{domainId}.studio.{region}.sagemaker.aws/jupyter/{resourceName}/proxy/{port_number}/"
 
 
 print(f"click the url to launch UI: {streamlit_url}")
