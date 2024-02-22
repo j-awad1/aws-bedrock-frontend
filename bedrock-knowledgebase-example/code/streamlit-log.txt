@@ -4,7 +4,99 @@ Collecting usage statistics. To deactivate, set browser.gatherUsageStats to Fals
 
   You can now view your Streamlit app in your browser.
 
-  Network URL: http://169.255.254.1:8501
-  External URL: http://44.194.192.59:8501
+  Network URL: http://169.255.254.1:8502
+  External URL: http://44.194.192.59:8502
 
 Model name selected = 
+Model name selected = 
+Model name selected = Llama2_13B
+Model name selected = Llama2_13B
+{'sessionId': 'MYSESSION', 'question': 'summarise different phases of cloud adoption and migration for AWS and azure'}
+s3://bbtest-knowledgebase-input/aws-cloud-design-patterns.pdf
+s3://bbtest-knowledgebase-input/azure-architecture-17.pdf
+response from llama2 model!!!
+bedrock_response type =<class 'dict'>
+response keys = dict_keys(['response', 'location'])
+chat keys = dict_keys(['question', 'answer', 'model', 'refrences'])
+Model name selected = Llama2_13B
+{'sessionId': 'MYSESSION', 'question': 'summarise different phases of cloud adoption and migration for AWS and azure'}
+s3://bbtest-knowledgebase-input/aws-cloud-design-patterns.pdf
+s3://bbtest-knowledgebase-input/azure-architecture-17.pdf
+response from llama2 model!!!
+bedrock_response type =<class 'dict'>
+response keys = dict_keys(['response', 'location'])
+chat keys = dict_keys(['question', 'answer', 'model', 'refrences'])
+chat keys = dict_keys(['question', 'answer', 'model', 'refrences'])
+2024-02-21 17:28:11.158 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 535, in _run_script
+    exec(code, module.__dict__)
+  File "/home/sagemaker-user/aws-bedrock-example/bedrock-knowledgebase-example/code/app-kb.py", line 116, in <module>
+    st.text_area("Q:", value=chat["question"], height=50, key=str(chat)+"q", disabled=True)
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 397, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/elements/widgets/text_widgets.py", line 484, in text_area
+    return self._text_area(
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/elements/widgets/text_widgets.py", line 563, in _text_area
+    widget_state = register_widget(
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/runtime/state/widgets.py", line 161, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/runtime/state/widgets.py", line 194, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='{'question': 'summarise different phases of cloud adoption and migration for AWS and azure', 'answer': '\n    - Refactor/re-architect\n    - Replatform (lift and reshape)\n    - Repurchase (drop and shop)\n    - Rehost (lift and shift)\n    \n    - Retire\n    - Retain\n    - Repurpose\n    \n    - Relocate\n    - Reorganize\n    - Recover\n    \n    - Rearchitect\n    - Rebuild\n    - Renovate\n    \n    - Rethink\n    - Rearchitect\n    - Rebuild\n    - Renovate\n    ', 'model': 'Llama2_13B', 'refrences': 's3://bbtest-knowledgebase-input/aws-cloud-design-patterns.pdf,s3://bbtest-knowledgebase-input/azure-architecture-17.pdf'}q'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+Model name selected = Claude21
+chat keys = dict_keys(['question', 'answer', 'model', 'refrences'])
+chat keys = dict_keys(['question', 'answer', 'model', 'refrences'])
+2024-02-21 17:28:47.225 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 535, in _run_script
+    exec(code, module.__dict__)
+  File "/home/sagemaker-user/aws-bedrock-example/bedrock-knowledgebase-example/code/app-kb.py", line 116, in <module>
+    st.text_area("Q:", value=chat["question"], height=50, key=str(chat)+"q", disabled=True)
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 397, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/elements/widgets/text_widgets.py", line 484, in text_area
+    return self._text_area(
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/elements/widgets/text_widgets.py", line 563, in _text_area
+    widget_state = register_widget(
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/runtime/state/widgets.py", line 161, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/runtime/state/widgets.py", line 194, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='{'question': 'summarise different phases of cloud adoption and migration for AWS and azure', 'answer': '\n    - Refactor/re-architect\n    - Replatform (lift and reshape)\n    - Repurchase (drop and shop)\n    - Rehost (lift and shift)\n    \n    - Retire\n    - Retain\n    - Repurpose\n    \n    - Relocate\n    - Reorganize\n    - Recover\n    \n    - Rearchitect\n    - Rebuild\n    - Renovate\n    \n    - Rethink\n    - Rearchitect\n    - Rebuild\n    - Renovate\n    ', 'model': 'Llama2_13B', 'refrences': 's3://bbtest-knowledgebase-input/aws-cloud-design-patterns.pdf,s3://bbtest-knowledgebase-input/azure-architecture-17.pdf'}q'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+Model name selected = Claude21
+{'sessionId': 'MYSESSION', 'question': 'summarise different phases of cloud adoption and migration for AWS and azure'}
+s3://bbtest-knowledgebase-input/aws-cloud-design-patterns.pdf
+s3://bbtest-knowledgebase-input/azure-architecture-17.pdf
+response from claude2 model!!!
+bedrock_response type =<class 'dict'>
+response keys = dict_keys(['response', 'location'])
+chat keys = dict_keys(['question', 'answer', 'model', 'refrences'])
+chat keys = dict_keys(['question', 'answer', 'model', 'refrences'])
+chat keys = dict_keys(['question', 'answer', 'model', 'refrences'])
+2024-02-21 17:29:03.142 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 535, in _run_script
+    exec(code, module.__dict__)
+  File "/home/sagemaker-user/aws-bedrock-example/bedrock-knowledgebase-example/code/app-kb.py", line 116, in <module>
+    st.text_area("Q:", value=chat["question"], height=50, key=str(chat)+"q", disabled=True)
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py", line 397, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/elements/widgets/text_widgets.py", line 484, in text_area
+    return self._text_area(
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/elements/widgets/text_widgets.py", line 563, in _text_area
+    widget_state = register_widget(
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/runtime/state/widgets.py", line 161, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+  File "/opt/conda/lib/python3.10/site-packages/streamlit/runtime/state/widgets.py", line 194, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='{'question': 'summarise different phases of cloud adoption and migration for AWS and azure', 'answer': '\n    - Refactor/re-architect\n    - Replatform (lift and reshape)\n    - Repurchase (drop and shop)\n    - Rehost (lift and shift)\n    \n    - Retire\n    - Retain\n    - Repurpose\n    \n    - Relocate\n    - Reorganize\n    - Recover\n    \n    - Rearchitect\n    - Rebuild\n    - Renovate\n    \n    - Rethink\n    - Rearchitect\n    - Rebuild\n    - Renovate\n    ', 'model': 'Llama2_13B', 'refrences': 's3://bbtest-knowledgebase-input/aws-cloud-design-patterns.pdf,s3://bbtest-knowledgebase-input/azure-architecture-17.pdf'}q'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
