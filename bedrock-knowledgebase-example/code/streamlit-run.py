@@ -37,7 +37,7 @@ else:
 with open("/opt/ml/metadata/resource-metadata.json", "r") as f:
     data = json.load(f)
     domainId = data['DomainId']
-    spaceName = data['SpaceName']
+    spaceName = data.get('SpaceName')
     resourceArn=data['ResourceArn']
     resourceName=data['ResourceName']
     region=resourceArn.split(":")[3]
