@@ -36,7 +36,8 @@ class BedrockProcessing():
     def get_knowledgebase_id(self):
         response = self.bedrock_agent.list_knowledge_bases()
         response['knowledgeBaseSummaries']
-        knowledgeBaseId = response['knowledgeBaseSummaries'][0]['knowledgeBaseId']
+        #knowledgeBaseId = response['knowledgeBaseSummaries'][0]['knowledgeBaseId']
+        knowledgeBaseId ='X0VZNMXW57'
         return knowledgeBaseId
     
     def get_knowledgebase_response(self, prompt):
@@ -49,7 +50,7 @@ class BedrockProcessing():
         return(knowledge_text)
  
     def get_response_from_bedrock_model_llama2(self, prompt):
-        max_gen_len = 128
+        max_gen_len = 2048
         temperature = 0.1
         top_p = 0.9
         model_id='meta.llama2-70b-chat-v1'
