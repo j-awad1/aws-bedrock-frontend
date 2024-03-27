@@ -49,10 +49,10 @@ class BedrockProcessing():
             knowledge_text = result['content']['text']
         return(knowledge_text)
  
-    def get_response_from_bedrock_model_llama2(self, prompt, max_gen_len):
+    def get_response_from_bedrock_model_llama2(self, prompt, max_gen_len, temperature, top_p):
         #max_gen_len = 2048
-        temperature = 0.1
-        top_p = 0.9
+        # temperature = 0.1
+        # top_p = 0.9
         model_id='meta.llama2-70b-chat-v1'
         accept = "application/json"
         content_type = "application/json"
@@ -72,14 +72,14 @@ class BedrockProcessing():
         response_body = json.loads(response.get('body').read())
         return response_body['generation']
         
-    def get_response_from_bedrock_model_claude21(self,prompt):
+    def get_response_from_bedrock_model_claude21(self, prompt, max_gen_len, temperature, top_p):
         model_id= "anthropic.claude-v2:1"
     
         body = json.dumps({
                                     "prompt": f"""\n\nHuman: {prompt}"\n\nAssistant:""",
-                                    "max_tokens_to_sample": 4096,
-                                    "temperature": 0.1,
-                                    "top_p": 0.9,
+                                    "max_tokens_to_sample": max_gen_len,
+                                    "temperature": temperature,
+                                    "top_p": top_p,
                                     
                                 })
         response = self.bedrock_runtime.invoke_model(
@@ -105,10 +105,10 @@ class BedrockProcessing():
             """
         if model=="Llama2_13B":
             print(f"response from llama2 model!!!")
-            response = self.get_response_from_bedrock_model_llama2(prompt)
+            response = self.get_response_from_bedrock_model_llama2(prompt, max_gen_len, temperature, top_p)
         else:
             print(f"response from claude2 model!!!")
-            response = self.get_response_from_bedrock_model_claude21(prompt)
+            response = self.get_response_from_bedrock_model_claude21(prompt, max_gen_len, temperature, top_p)
         response = {"response": response, 'location': references}
         return response
         
