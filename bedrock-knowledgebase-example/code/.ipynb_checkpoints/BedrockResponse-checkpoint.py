@@ -49,8 +49,8 @@ class BedrockProcessing():
             knowledge_text = result['content']['text']
         return(knowledge_text)
  
-    def get_response_from_bedrock_model_llama2(self, prompt):
-        max_gen_len = 2048
+    def get_response_from_bedrock_model_llama2(self, prompt, max_gen_len):
+        #max_gen_len = 2048
         temperature = 0.1
         top_p = 0.9
         model_id='meta.llama2-70b-chat-v1'
