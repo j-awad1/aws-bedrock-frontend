@@ -93,7 +93,7 @@ class BedrockProcessing():
         #print(type(references))
         return(response_body['completion'])
 
-    def get_bedrock_model_response(self, prompt, model):
+    def get_bedrock_model_response(self, prompt, model, max_gen_len, temperature, top_p):
         kb_response=self.get_knowledge_response_using_pagination(prompt)
         kb_text=kb_response['prompt']
         references=kb_response['location']
