@@ -99,7 +99,7 @@ if submit_button and prompt:
     #st.sidebar.text_area("Trace Data", value=all_data, height=300)
     st.session_state['history'].append({"question":prompt, "answer":response, "model":model_name, "max_gen_len":max_gen_len, "temperature":temperature, "top_p":top_p, "refrences":','.join(location)})
     st.session_state['trace_data'] = response
-
+    # print(st.session_state["answer"])
     
 if end_session_button:
     st.session_state['history'].append({"question": "Session Ended", "answer": "Thank you for using Enterprise Architect Agent!"})

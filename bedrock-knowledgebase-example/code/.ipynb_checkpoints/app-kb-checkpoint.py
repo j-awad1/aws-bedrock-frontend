@@ -5,7 +5,7 @@ br=BedrockProcessing()
 
 #import streamlit as st
 
-st.header("Bedrock Knowledgebase Example")
+st.header("Bedrock Knowledgebase")
 
 def display_local_image(image_path, max_width=None, caption=None):
     """Displays a local image on the Streamlit UI with customization options.
@@ -52,9 +52,9 @@ display_local_image(image_path, max_width, caption)
 #prompt = col1.text_input("Enter your query:", key="query")
 #model_name = col2.selectbox("Select Model:", ["","Llama2_13B", "Claude21"], key="Model")
 prompt = st.text_input("Please enter your query", max_chars=2000)
-model_name = st.selectbox("Select Model:", ["","Llama2_13B", "Claude21"], key="Model")
+model_name = st.selectbox("Select Model:", ["","Llama2_13B", "Claude2v1"], key="Model")
 max_gen_len = st.slider("Maximum Length Generation:", min_value=0, max_value=4096, value=(2048))
-temperature = st.slider("Temperature:", min_value=0.0, max_value=1.0, value=(0.1))
+temperature = st.slider("Temperature:", min_value=0.0, max_value=1.0, value=(0.3))
 top_p = st.slider("Top_p:", min_value=0.0, max_value=1.0, value=(0.5))
 # print(f"Model name Selected = {model_name}")
 # print(f"Max Length Selected = {max_gen_len}")
@@ -99,7 +99,7 @@ if submit_button and prompt:
     #st.sidebar.text_area("Trace Data", value=all_data, height=300)
     st.session_state['history'].append({"question":prompt, "answer":response, "model":model_name, "max_gen_len":max_gen_len, "temperature":temperature, "top_p":top_p, "refrences":','.join(location)})
     st.session_state['trace_data'] = response
-
+    # print(st.session_state["answer"])
     
 if end_session_button:
     st.session_state['history'].append({"question": "Session Ended", "answer": "Thank you for using Enterprise Architect Agent!"})
@@ -130,8 +130,6 @@ for chat in reversed(st.session_state['history']):
 
 st.write("## Test Knowledge Base Prompts")
 st.markdown("""
-- "summarise different phases of cloud adoption and migration"
-
-- "what is saga"
+- ""
 
 """)

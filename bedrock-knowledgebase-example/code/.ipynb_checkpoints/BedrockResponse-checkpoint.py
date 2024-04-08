@@ -37,7 +37,8 @@ class BedrockProcessing():
         response = self.bedrock_agent.list_knowledge_bases()
         response['knowledgeBaseSummaries']
         #knowledgeBaseId = response['knowledgeBaseSummaries'][0]['knowledgeBaseId']
-        knowledgeBaseId ='X0VZNMXW57'
+        # knowledgeBaseId ='X0VZNMXW57' #Vivian's KB
+        knowledgeBaseId = 'WPONCJAUDB' #Jonathan's KB
         return knowledgeBaseId
     
     def get_knowledgebase_response(self, prompt):
@@ -72,12 +73,12 @@ class BedrockProcessing():
         response_body = json.loads(response.get('body').read())
         return response_body['generation']
         
-    def get_response_from_bedrock_model_claude21(self, prompt, max_gen_len, temperature, top_p):
+    def get_response_from_bedrock_model_claude2v1(self, prompt, max_gen_len, temperature, top_p):
         model_id= "anthropic.claude-v2:1"
     
         body = json.dumps({
                                     "prompt": f"""\n\nHuman: {prompt}"\n\nAssistant:""",
-                                    "max_tokens_to_sample": max_gen_len,
+                                    "max_tokens": max_gen_len,
                                     "temperature": temperature,
                                     "top_p": top_p,
                                     
@@ -89,9 +90,30 @@ class BedrockProcessing():
                                                             modelId= model_id
                                                         )
         response_body = json.loads(response.get('body').read())
-        #print(response_body)
+        print(response_body)
         #print(type(references))
         return(response_body['completion'])
+    
+#         def get_response_from_bedrock_model_claude3(self, prompt, max_gen_len, temperature, top_p): #NEEDS WORK TODO
+#         model_id= "anthropic.claude-3-sonnet-20240229-v1:0"
+    
+#         body = json.dumps({
+#                                     "prompt": f"""\n\nHuman: {prompt}"\n\nAssistant:""",
+#                                     "max_tokens": max_gen_len,
+#                                     "temperature": temperature,
+#                                     "top_p": top_p,
+                                    
+#                                 })
+#         response = self.bedrock_runtime.invoke_model(
+#                                                             body=body, #tab'bytes'|file,
+#                                                             contentType='application/json',
+#                                                             accept='application/json',
+#                                                             modelId= model_id
+#                                                         )
+#         response_body = json.loads(response.get('body').read())
+#         print(response_body)
+#         #print(type(references))
+#         return(response_body['completion'])
 
     def get_bedrock_model_response(self, prompt, model, max_gen_len, temperature, top_p):
         kb_response=self.get_knowledge_response_using_pagination(prompt)
@@ -107,50 +129,53 @@ class BedrockProcessing():
             print(f"response from llama2 model!!!")
             response = self.get_response_from_bedrock_model_llama2(prompt, max_gen_len, temperature, top_p)
         else:
-            print(f"response from claude2 model!!!")
-            response = self.get_response_from_bedrock_model_claude21(prompt, max_gen_len, temperature, top_p)
+            print(f"response from claude2v1 model!!!")
+            response = self.get_response_from_bedrock_model_claude2v1(prompt, max_gen_len, temperature, top_p)
+        # if model=="Claude 3 Sonnet":
+        #     print(f"response from claude3 model!!!")
+        #     response = self.get_response_from_bedrock_model_claude3(prompt, max_gen_len, temperature, top_p)
         response = {"response": response, 'location': references}
         return response
         
         
-    def get_response_from_bedrock_model(self,prompt):
+#     def get_response_from_bedrock_model(self,prompt):
         
-        kb_response=self.get_knowledge_response_using_pagination(prompt)
-        kb_text=kb_response['prompt']
-        references=kb_response['location']
+#         kb_response=self.get_knowledge_response_using_pagination(prompt)
+#         kb_text=kb_response['prompt']
+#         references=kb_response['location']
         
-        prompt = f"""{prompt} using following 
-            <text>
-            {self.get_knowledgebase_response(prompt)}
-            <text>
-            """
-        """
-        body = json.dumps(
-                            {
-                                "inputText":prompt,
-                                "textGenerationConfig":{
-                                    "maxTokenCount":256,
-                                    "stopSequences":[],
-                                    "temperature":0,
-                                    "topP":1
-                                }
-                            }
-                        )
-        """
-        body = json.dumps({
-                                "prompt": f"""\n\nHuman: {prompt}"\n\nAssistant:""",
-                                "max_tokens_to_sample": 4096,
-                                "temperature": 0.1,
-                                "top_p": 0.9,
+#         prompt = f"""{prompt} using following 
+#             <text>
+#             {self.get_knowledgebase_response(prompt)}
+#             <text>
+#             """
+#         """
+#         body = json.dumps(
+#                             {
+#                                 "inputText":prompt,
+#                                 "textGenerationConfig":{
+#                                     "maxTokenCount":256,
+#                                     "stopSequences":[],
+#                                     "temperature":0,
+#                                     "topP":1
+#                                 }
+#                             }
+#                         )
+#         """
+#         body = json.dumps({
+#                                 "prompt": f"""\n\nHuman: {prompt}"\n\nAssistant:""",
+#                                 "max_tokens_to_sample": 4096,
+#                                 "temperature": 0.1,
+#                                 "top_p": 0.9,
                                 
-                            })
-        response = self.bedrock_runtime.invoke_model(
-                                                        body=body, #tab'bytes'|file,
-                                                        contentType='application/json',
-                                                        accept='application/json',
-                                                        modelId=self.modelId
-                                                    )
-        response_body = json.loads(response.get('body').read())
-        #print(response_body)
-        #print(type(references))
-        return(response_body['completion'], references)
+#                             })
+#         response = self.bedrock_runtime.invoke_model(
+#                                                         body=body, #tab'bytes'|file,
+#                                                         contentType='application/json',
+#                                                         accept='application/json',
+#                                                         modelId=self.modelId
+#                                                     )
+#         response_body = json.loads(response.get('body').read())
+#         #print(response_body)
+#         #print(type(references))
+#         return(response_body['completion'], references)

@@ -37,7 +37,8 @@ class BedrockProcessing():
         response = self.bedrock_agent.list_knowledge_bases()
         response['knowledgeBaseSummaries']
         #knowledgeBaseId = response['knowledgeBaseSummaries'][0]['knowledgeBaseId']
-        knowledgeBaseId ='X0VZNMXW57'
+        # knowledgeBaseId ='X0VZNMXW57' #Vivian's KB
+        knowledgeBaseId = 'WPONCJAUDB' #Jonathan's KB
         return knowledgeBaseId
     
     def get_knowledgebase_response(self, prompt):
@@ -93,26 +94,26 @@ class BedrockProcessing():
         #print(type(references))
         return(response_body['completion'])
     
-        def get_response_from_bedrock_model_claude3(self, prompt, max_gen_len, temperature, top_p): #NEEDS WORK TODO
-        model_id= "anthropic.claude-3-sonnet-20240229-v1:0"
+#         def get_response_from_bedrock_model_claude3(self, prompt, max_gen_len, temperature, top_p): #NEEDS WORK TODO
+#         model_id= "anthropic.claude-3-sonnet-20240229-v1:0"
     
-        body = json.dumps({
-                                    "prompt": f"""\n\nHuman: {prompt}"\n\nAssistant:""",
-                                    "max_tokens": max_gen_len,
-                                    "temperature": temperature,
-                                    "top_p": top_p,
+#         body = json.dumps({
+#                                     "prompt": f"""\n\nHuman: {prompt}"\n\nAssistant:""",
+#                                     "max_tokens": max_gen_len,
+#                                     "temperature": temperature,
+#                                     "top_p": top_p,
                                     
-                                })
-        response = self.bedrock_runtime.invoke_model(
-                                                            body=body, #tab'bytes'|file,
-                                                            contentType='application/json',
-                                                            accept='application/json',
-                                                            modelId= model_id
-                                                        )
-        response_body = json.loads(response.get('body').read())
-        print(response_body)
-        #print(type(references))
-        return(response_body['completion'])
+#                                 })
+#         response = self.bedrock_runtime.invoke_model(
+#                                                             body=body, #tab'bytes'|file,
+#                                                             contentType='application/json',
+#                                                             accept='application/json',
+#                                                             modelId= model_id
+#                                                         )
+#         response_body = json.loads(response.get('body').read())
+#         print(response_body)
+#         #print(type(references))
+#         return(response_body['completion'])
 
     def get_bedrock_model_response(self, prompt, model, max_gen_len, temperature, top_p):
         kb_response=self.get_knowledge_response_using_pagination(prompt)
@@ -127,12 +128,12 @@ class BedrockProcessing():
         if model=="Llama2_13B":
             print(f"response from llama2 model!!!")
             response = self.get_response_from_bedrock_model_llama2(prompt, max_gen_len, temperature, top_p)
-        if model=="Claude2v1":
+        else:
             print(f"response from claude2v1 model!!!")
             response = self.get_response_from_bedrock_model_claude2v1(prompt, max_gen_len, temperature, top_p)
-        if model=="Claude 3 Sonnet":
-            print(f"response from claude3 model!!!")
-            response = self.get_response_from_bedrock_model_claude3(prompt, max_gen_len, temperature, top_p)
+        # if model=="Claude 3 Sonnet":
+        #     print(f"response from claude3 model!!!")
+        #     response = self.get_response_from_bedrock_model_claude3(prompt, max_gen_len, temperature, top_p)
         response = {"response": response, 'location': references}
         return response
         
