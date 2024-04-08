@@ -75,10 +75,10 @@ class BedrockProcessing():
         
     def get_response_from_bedrock_model_claude2v1(self, prompt, max_gen_len, temperature, top_p):
         model_id= "anthropic.claude-v2:1"
-    
+
         body = json.dumps({
                                     "prompt": f"""\n\nHuman: {prompt}"\n\nAssistant:""",
-                                    "max_tokens": max_gen_len,
+                                    "max_tokens_to_sample": max_gen_len,
                                     "temperature": temperature,
                                     "top_p": top_p,
                                     

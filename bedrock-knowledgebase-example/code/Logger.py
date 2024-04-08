@@ -4,28 +4,31 @@ import os
 
 class Logger:
     def __init__(self):
-        user = input("ENTER NAME FOR LOGGING: ")
-        self.user = user
+        # user = input("ENTER NAME FOR LOGGING: ")
+        # self.user = user
         self.file_Llama = "Log_Llama.csv"
-        self.file_M2 = "Log_Claude.csv"
+        self.file_Clause2 = "Log_Claude.csv"
         self.init_CSV(self.file_Llama)
-        self.init_CSV(self.file_M2)
+        self.init_CSV(self.file_Clause2)
         
     #create CSV files and add rows
     def init_CSV(self, filename):
         if not os.path.isfile(filename):
             file = open(filename, 'w', newline='')
-            writer = csv.DictWriter(file, ["User", "Input Prompt", "Max Generation Length", "Temperature", "Top_P", "Response"])
+            writer = csv.DictWriter(file, ["Input Prompt", "Max Generation Length", "Temperature", "Top_P", "Response"])
             writer.writeheader()
             
         else:
-            print(f'Using Existing {filename} Log')
+            print(f'Using Existing {filename} Log File')
      
     #Log data given a variable
     def log_data(self, modelName, data):
         
-        if modelName == "Llama":
+        if modelName == "Llama2_13B":
             fileName = self.file_Llama
+        if modelName == "Claude2v1":
+            fileName = self.file_Clause2
+            
             
         with open(fileName, 'r', newline='') as file:
             reader = csv.DictReader(file)

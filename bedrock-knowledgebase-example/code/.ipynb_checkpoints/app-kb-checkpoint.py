@@ -1,6 +1,8 @@
 
 import streamlit as st
 from BedrockResponse import BedrockProcessing
+from Logger import Logger
+logger=Logger()
 br=BedrockProcessing()
 
 #import streamlit as st
@@ -59,7 +61,7 @@ top_p = st.slider("Top_p:", min_value=0.0, max_value=1.0, value=(0.5))
 # print(f"Model name Selected = {model_name}")
 # print(f"Max Length Selected = {max_gen_len}")
 # print(f"Temperature Selected = {temperature}")
-st.write('TEMP: ', temperature)
+# st.write('TEMP: ', temperature)
 # print(f"Top P Selected = {top_p}")
 prompt = prompt.strip()
 
@@ -97,9 +99,12 @@ if submit_button and prompt:
     location=bedrock_response['location']
     # Use trace_data and formatted_response as needed
     #st.sidebar.text_area("Trace Data", value=all_data, height=300)
+    log_data = [prompt, max_gen_len, temperature, top_p, response]
+    logger.log_data(model_name, log_data)
+    
     st.session_state['history'].append({"question":prompt, "answer":response, "model":model_name, "max_gen_len":max_gen_len, "temperature":temperature, "top_p":top_p, "refrences":','.join(location)})
     st.session_state['trace_data'] = response
-    # print(st.session_state["answer"])
+    # log_data = st.session_state["history"]
     
 if end_session_button:
     st.session_state['history'].append({"question": "Session Ended", "answer": "Thank you for using Enterprise Architect Agent!"})
