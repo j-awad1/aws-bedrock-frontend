@@ -17,7 +17,7 @@ class Logger:
     def init_CSV(self, filename):
         if not os.path.isfile(filename):
             file = open(filename, 'w', newline='')
-            writer = csv.DictWriter(file, ["TimeStamp", "Input Prompt", "Max Generation Length", "Temperature", "Top_P", "Response"])
+            writer = csv.DictWriter(file, ["Model", "TimeStamp", "Input Prompt", "Max Generation Length", "Temperature", "Top_P", "Response"])
             writer.writeheader()
             
         else:

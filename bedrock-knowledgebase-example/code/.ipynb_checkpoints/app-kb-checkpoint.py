@@ -100,9 +100,9 @@ if submit_button and prompt:
     location=bedrock_response['location']
     # Use trace_data and formatted_response as needed
     #st.sidebar.text_area("Trace Data", value=all_data, height=300)
-    curr_datetime = datetime.datetime.strftime('%Y-%m-%d %H:%M:%S')
+    curr_datetime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     
-    log_data = [curr_datetime, prompt, max_gen_len, temperature, top_p, response]
+    log_data = [model_name, curr_datetime, prompt, max_gen_len, temperature, top_p, response]
     logger.log_data(model_name, log_data)
     
     st.session_state['history'].append({"question":prompt, "answer":response, "model":model_name, "max_gen_len":max_gen_len, "temperature":temperature, "top_p":top_p, "refrences":','.join(location)})
