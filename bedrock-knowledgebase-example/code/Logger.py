@@ -7,15 +7,17 @@ class Logger:
         # user = input("ENTER NAME FOR LOGGING: ")
         # self.user = user
         self.file_Llama = "Log_Llama.csv"
-        self.file_Clause2 = "Log_Claude.csv"
+        self.file_Clause2 = "Log_Claude_2.csv"
+        # self.file_Clause3 = "Log_Claude_3.csv"
         self.init_CSV(self.file_Llama)
         self.init_CSV(self.file_Clause2)
+        # self.init_CSV(self.file_Clause3)
         
     #create CSV files and add rows
     def init_CSV(self, filename):
         if not os.path.isfile(filename):
             file = open(filename, 'w', newline='')
-            writer = csv.DictWriter(file, ["Input Prompt", "Max Generation Length", "Temperature", "Top_P", "Response"])
+            writer = csv.DictWriter(file, ["TimeStamp", "Input Prompt", "Max Generation Length", "Temperature", "Top_P", "Response"])
             writer.writeheader()
             
         else:

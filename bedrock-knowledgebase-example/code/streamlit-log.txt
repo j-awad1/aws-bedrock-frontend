@@ -4,6 +4,13 @@ Collecting usage statistics. To deactivate, set browser.gatherUsageStats to Fals
 
   You can now view your Streamlit app in your browser.
 
-  Network URL: http://169.255.254.1:8526
-  External URL: http://44.194.192.59:8526
+  Network URL: http://169.255.254.1:8529
+  External URL: http://54.83.37.5:8529
 
+2024-04-09 20:57:38.672 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 542, in _run_script
+    exec(code, module.__dict__)
+  File "/home/sagemaker-user/aws-bedrock-example/bedrock-knowledgebase-example/code/app-kb.py", line 103, in <module>
+    curr_datetime = datetime.datetime.strftime('%Y-%m-%d %H:%M:%S')
+TypeError: descriptor 'strftime' for 'datetime.date' objects doesn't apply to a 'str' object
