@@ -4,26 +4,20 @@ Collecting usage statistics. To deactivate, set browser.gatherUsageStats to Fals
 
   You can now view your Streamlit app in your browser.
 
-  Network URL: http://169.255.254.1:8530
-  External URL: http://54.83.37.5:8530
+  Network URL: http://169.255.254.1:8532
+  External URL: http://44.194.192.59:8532
 
-2024-04-09 21:05:32.444 Uncaught app exception
+2024-04-10 14:28:54.866 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/conda/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 542, in _run_script
     exec(code, module.__dict__)
-  File "/home/sagemaker-user/aws-bedrock-example/bedrock-knowledgebase-example/code/app-kb.py", line 131, in <module>
-    st.text_area("Q:", value=chat["question"], height=50, key=str(chat)+"q", disabled=True)
-  File "/opt/conda/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 397, in wrapped_func
-    result = non_optional_func(*args, **kwargs)
-  File "/opt/conda/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 484, in text_area
-    return self._text_area(
-  File "/opt/conda/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 563, in _text_area
-    widget_state = register_widget(
-  File "/opt/conda/lib/python3.9/site-packages/streamlit/runtime/state/widgets.py", line 163, in register_widget
-    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
-  File "/opt/conda/lib/python3.9/site-packages/streamlit/runtime/state/widgets.py", line 196, in register_widget_from_metadata
-    raise DuplicateWidgetID(
-streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='{'question': 'What is MISMO', 'answer': ' Based on the text provided, it looks like MISMO (Mortgage Industry Standards Maintenance Organization) is using these data elements and code values to standardize different types of mortgage data and metadata.\n\nSome key things I noticed:\n\n- DataItemChangeType - defines different types of changes to data items (add, delete, update)\n\n- DataNotSuppliedReasonType - defines reasons why a particular data point may not be supplied (not collected, not received, not relevant, omitted, other)\n\n- DataSourceType - defines standard codes for different sources of data\n\nSo in summary, MISMO seems to be establishing standardized sets of data elements, code values, and definitions to facilitate common understanding and exchange of mortgage data between different parties/systems. This allows mortgage data to be more interoperable between lenders, servicers, investors etc.\n\nThe text snippets define some of these standardized data elements and code values that MISMO has established.', 'model': 'Claude2v1', 'max_gen_len': 2048, 'temperature': 0.3, 'top_p': 0.5, 'refrences': 's3://fnma-innovationsdbx-mismo-semantic-bucket/V3.6 Logical Data Dictionary_Public CR.xlsx'}q'`.
-
-To fix this, please make sure that the `key` argument is unique for each
-widget you create.
+  File "/home/sagemaker-user/aws-bedrock-example/bedrock-knowledgebase-example/code/app-kb.py", line 105, in <module>
+    curr_datetime = datetime.now(timezone(timedelta(hours=-5), 'EST')).strftime('%Y-%m-%d %H:%M:%S')
+NameError: name 'timedelta' is not defined
+2024-04-10 14:28:56.287 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 542, in _run_script
+    exec(code, module.__dict__)
+  File "/home/sagemaker-user/aws-bedrock-example/bedrock-knowledgebase-example/code/app-kb.py", line 105, in <module>
+    curr_datetime = datetime.now(timezone(timedelta(hours=-5), 'EST')).strftime('%Y-%m-%d %H:%M:%S')
+NameError: name 'timedelta' is not defined

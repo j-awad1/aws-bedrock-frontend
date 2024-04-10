@@ -2,7 +2,9 @@
 import streamlit as st
 from BedrockResponse import BedrockProcessing
 from Logger import Logger
-import datetime
+from datetime import datetime, timezone, timedelta
+import pytz
+
 logger=Logger()
 br=BedrockProcessing()
 
@@ -100,7 +102,7 @@ if submit_button and prompt:
     location=bedrock_response['location']
     # Use trace_data and formatted_response as needed
     #st.sidebar.text_area("Trace Data", value=all_data, height=300)
-    curr_datetime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    curr_datetime = datetime.now(timezone(timedelta(hours=-4), 'EST')).strftime('%Y-%m-%d %H:%M:%S')
     
     log_data = [model_name, curr_datetime, prompt, max_gen_len, temperature, top_p, response]
     logger.log_data(model_name, log_data)
