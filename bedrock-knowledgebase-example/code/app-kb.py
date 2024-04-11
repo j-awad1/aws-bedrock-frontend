@@ -9,7 +9,8 @@ logger=Logger()
 br=BedrockProcessing()
 
 #import streamlit as st
-
+#TODO - drop down of file format
+# Langchain "gaurd" implementation
 st.header("Bedrock Knowledgebase")
 
 def display_local_image(image_path, max_width=None, caption=None):

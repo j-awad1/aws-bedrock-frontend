@@ -1,0 +1,218 @@
+Model,TimeStamp,Input Prompt,Max Generation Length,Temperature,Top_P,Response
+Claude2v1,2024-04-10 14:24:34,What is mismo,2048,0.3,0.5," Based on the text provided, it looks like MISMO (Mortgage Industry Standards Maintenance Organization) is using the CounselingFormatType element to specify the format in which a counseling or education service is delivered.
+
+Some key points:
+
+- CounselingFormatType is an enumerated list with 5 possible values:
+  - FaceToFace - Counseling takes place in person
+  - Hybrid - Counseling using multiple modalities
+  - Internet - Counseling via the internet
+  - Telephone - Counseling via telephone
+  - Other
+
+- It is used in the COUNSELING_EVENT_DETAIL container to specify how a particular counseling event took place.
+
+- The text shows it being used in multiple places within a MISMO XML file, like under CLOSING_INSTRUCTIONS and PARTIES.
+
+So in summary, MISMO is using CounselingFormatType as a standardized way to capture how counseling and education services are delivered to parties like the borrower within a mortgage transaction. The goal is likely to promote consistency in how this data is represented across the industry."
+Claude2v1,2024-04-10 10:30:25,What is mismo,2048,0.3,0.5," Based on the text provided, it looks like MISMO (Mortgage Industry Standards Maintenance Organization) is using the CounselingFormatType element to specify the format in which a counseling or education service is delivered.
+
+Some key points:
+
+- CounselingFormatType is an enumerated list with 5 possible values:
+  - FaceToFace - Counseling takes place in person
+  - Hybrid - Counseling using multiple modalities
+  - Internet - Counseling via internet
+  - Telephone - Counseling via telephone
+  - Other
+
+- It is used to specify the format of a counseling event under the COUNSELING_EVENT_DETAIL container.
+
+- The text shows the CounselingFormatType being used in multiple places within a MISMO XML document, like under CLOSING_INSTRUCTIONS, PARTIES, etc.
+
+So in summary, it's an standardized way for MISMO data to capture how a counseling session was conducted, whether in-person, online, phone, or some combination. This allows this data to be exchanged in a consistent format between MISMO-compliant systems."
+Claude2v1,2024-04-11 11:19:12,List an attribute from MISMO,2048,0.3,0.5," Based on the text provided, here is an example of listing a MISMO attribute:
+
+<text>
+xlink:MISMOresourceLink = PropertyUsageType
+Location = //DEAL/SERVICES/SERVICE[1]/PROPERTY_INFORMATION_SERVICE/PROPERTY_INFORMATION_SERVICE_REQUEST/PROPERTIES/PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION[1]/LISTING_INFORMATION_DETAIL/PropertyUsageType
+Definition = A value from a MISMO prescribed list that specifies the intended usage of the property by the borrower.
+Used As = PropertyUsageType
+Used In Containers = 1
+Count = 12
+Enumerations = PropertyUsageEnum
+</text>
+
+The key components listed are:
+- xlink:MISMOresourceLink - the name of the attribute
+- Location - the XPath showing where this attribute is used
+- Definition - a description of what the attribute specifies
+- Used As - the element name that uses this attribute 
+- Used In Containers - how many containers use this attribute
+- Count - number of occurrences 
+- Enumerations - any enumerations associated with this attribute
+
+Let me know if you need any clarification or have additional examples to walk through!"
+Claude2v1,2024-04-11 13:24:51,what is ltv,2048,0.3,0.5," Based on the XML data provided, here are the key details about LTV:
+
+1) LTV is used in 1 container:
+Used As: LTV In 1 Containers
+
+2) There are 6 total count references to LTV:  
+Count = 6
+
+3) There are 2 unique LTV elements:
+Count = 2
+
+4) The LTV elements are:
+LTV 
+BaseLTVRatioPercent
+
+5) Some of the XPaths where LTV information is stored:
+//DEAL/SERVICES/SERVICE[1]/AUTOMATED_UNDERWRITING_SYSTEM/AUTOMATED_UNDERWRITING_SYSTEM_RESPONSE/LOANS/LOAN[1]/LTV
+//DEAL/LOANS/LOAN[1]/LTV
+
+So in summary, there are 2 main LTV data elements, stored in 1 container, with 6 total references across the XML document. The key paths to find LTV data are provided in the XPaths listed above."
+Claude2v1,2024-04-11 13:35:29,Hello! list LTV or loan to value containers,2048,0.3,0.5," Based on the text provided, here are the LTV or loan to value containers that were listed:
+
+1. DEAL/LOANS/LOAN[1]/DRAW
+2. DEAL/SERVICES/SERVICE[1]/AUTOMATED_UNDERWRITING_SYSTEM/AUTOMATED_UNDERWRITING_SYSTEM_RESPONSE/LOANS/LOAN[1]/DRAW
+3. DEAL/SERVICES/SERVICE[1]/CREDIT/CREDIT_RESPONSE/LOANS/LOAN[1]/DRAW  
+4. DEAL/SERVICES/SERVICE[1]/FLOOD/FLOOD_RESPONSE/LOANS/LOAN[1]/DRAW
+5. DEAL/SERVICES/SERVICE[1]/TITLE/TITLE_RESPONSE/TITLE_PRODUCTS/TITLE_PRODUCT[1]/TITLE_COMMITMENT/TITLE_EXISTING_LOANS_AND_LIABILITIES_INFORMATION/LOANS/LOAN[1]/DRAW
+6. DEAL/SERVICES/SERVICE[1]/TITLE/TITLE_RESPONSE/TITLE_PRODUCTS/TITLE_PRODUCT[1]/TITLE_POLICIES/TITLE_POLICY[1]/LOANS/LOAN[1]/DRAW
+
+The text also mentions:
+
+- DRAW
+- DRAW_ACTIVITIES
+
+As containers related to LTV."
+Claude2v1,2024-04-11 13:58:06,What is Loan UPB mapped to in MISMO,2048,0.3,0.5," Based on the text provided, it does not look like Loan UPB (unpaid principal balance) is directly mapped to anything in MISMO. The text mentions some MISMO elements like ""LoanOriginationSystemVersionIdentifier"", ""DataNotSuppliedReasonType"", ""IdentifierEffectiveDate"", etc. but none of those seem to represent Loan UPB specifically.
+
+The closest reference is the mention of ""Loan Originator Type"" at the end, which allows specifying the type of party that originated the loan. But this does not provide any mapping or details about Loan UPB or unpaid balances.
+
+So in summary, the text does not appear to contain any clear or direct mapping of Loan UPB to MISMO. It focuses more on metadata about the origination system, data quality, identifiers, etc. If there is additional context or details on what the specific question is regarding Loan UPB, please provide that for a more targeted response. But with the information given, there is no evident mapping to MISMO provided."
+Claude2v1,2024-04-11 14:00:02,What is Loan UPB mapped to in MISMO? Provide JSON ouput,2048,0.3,0.5," Here is the JSON output mapping Loan UPB to the MISMO standard:
+
+```json
+{
+    ""MISMO Mapping"": {
+        ""Loan UPB"": ""LoanAcquisitionActualUPBAmount"",
+        ""Used As"": ""LoanAcquisitionActualUPBAmount In 1 Containers"",
+        ""Count"": ""Count = 6"",
+        ""Count"": ""Count = 7"",
+        ""MISMO Amount"": ""MISMOAmount"",
+        ""Containers"": [
+            {
+                ""Path"": ""//DEAL/SERVICES/SERVICE[1]/AUTOMATED_UNDERWRITING_SYSTEM/AUTOMATED_UNDERWRITING_SYSTEM_RESPONSE/LOANS/LOAN[1]/SERVICING/SERVICING_DETAIL/LoanAcquisitionActualUPBAmount"",
+                ""Attribute"": ""AttributeExtension""
+            },
+            {
+                ""Path"": ""//DEAL/SERVICES/SERVICE[1]/CREDIT/CREDIT_RESPONSE/LOANS/LOAN[1]/SERVICING/SERVICING_DETAIL/LoanAcquisitionActualUPBAmount"",
+                ""Attribute"": ""CurrencyURI""
+            },
+            {
+                ""Path"": ""//DEAL/LOANS/LOAN[1]/SERVICING/SERVICING_DETAIL/LoanAcquisitionActualUPBAmount"",
+                ""Attribute"": ""DataNotSuppliedReasonType""
+            },
+            {
+                ""Path"": ""//DEAL/SERVICES/SERVICE[1]/FLOOD/FLOOD_RESPONSE/LOANS/LOAN[1]/SERVICING/SERVICING_DETAIL/LoanAcquisitionActualUPBAmount"",
+                ""Attribute"": ""DataNotSuppliedReasonTypeAdditionalDescription""
+            },
+            {
+                ""Path"": ""//DEAL/SERVICES/SERVICE[1]/TITLE/TITLE_RESPONSE/TITLE_PRODUCTS/TITLE_PRODUCT[1]/TITLE_COMMITMENT/TITLE_EXISTING_LOANS_AND_LIABILITIES_INFORMATION/LOANS/LOAN[1]/SERVICING/SERVICING_DETAIL/LoanAcquisitionActualUPBAmount"",
+                ""Attribute"": ""DataNotSuppliedReasonTypeOtherDescription""
+            },
+            {
+                ""Path"": ""//DEAL/SERVICES/SERVICE[1]/TITLE/TITLE_RESPONSE/TITLE_PRODUCTS/TITLE_PRODUCT[1]/TITLE_POLICIES/TITLE_POLICY[1]/LOANS/LOAN[1]/SERVICING/SERVICING_DETAIL/LoanAcquisitionActualUPBAmount"",
+                ""Attribute"": ""SensitiveIndicator""
+            }
+        ],
+        ""xlink:MISMOresourceLink"": ""Loan Acquisition Scheduled UPB Amount"",
+        ""Definition"": ""The scheduled unpaid principal balance of the mortgage as of loan acquisition or the issue date of the associated security.""
+    }
+}
+```
+
+This maps the Loan UPB element to the MISMO standard element LoanAcquisitionActualUPBAmount, shows where it is used, provides some additional attributes, and gives the definition."
+Claude2v1,2024-04-11 14:02:25,Hi! what ltv types in json,2048,0.3,0.5," Based on the text provided, it does not contain any JSON data types. It mentions ""CollectionContactText"" which is used in some XML containers, as well as some XML attributes like ""DataNotSuppliedReasonType"", ""SensitiveIndicator"", etc.
+
+The key JSON data types that could potentially be used here are:
+
+- String - For textual data like CollectionContactText
+- Number - For numeric data like counts or ratios 
+- Boolean - For true/false indicators like SensitiveIndicator
+- Object - For nested structures to represent loans, collections, etc
+- Array - For lists/collections of loans, collections, etc
+
+But none of these JSON data types are actually shown in the provided text. It is describing XML containers, attributes and values rather than any JSON.
+
+So in summary - no JSON data types are demonstrated in the provided text. It is showing XML examples instead."
+Claude2v1,2024-04-11 14:11:16,What is UBP mapped to in MISMO? Provide JSON ouput,2048,0.3,0.5," Based on the JSON paths provided in the input, UBP (which I assume stands for Unscheduled Principal Balance) is mapped to the following MISMO elements:
+
+```json
+{
+  ""MISMOAmount"": ""//DOCUMENT/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/DATA_MODIFICATION/DATA_MODIFICATION_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""AttributeExtension"": ""//MESSAGE/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/DATA_MODIFICATION/DATA_MODIFICATION_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"", 
+  ""CurrencyURI"": ""//DOCUMENT/DEAL_SETS/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""DataNotSuppliedReasonType"": ""//MESSAGE/DEAL_SETS/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""DataNotSuppliedReasonTypeAdditionalDescription"": ""//DOCUMENT/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/SERVICING_TRANSFER/SERVICING_TRANSFER_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""DataNotSuppliedReasonTypeOtherDescription"": ""//MESSAGE/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/SERVICING_TRANSFER/SERVICING_TRANSFER_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""SensitiveIndicator"": ""//DOCUMENT/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/WORKOUT_EVALUATION/WORKOUT_EVALUATION_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""xlink:MISMOresourceLink"": ""//""
+}
+```
+
+The main mapping is to the `PoolUnscheduledPrincipalAmount` element at various paths representing different MISMO documents and contexts. The other elements provide additional attributes or metadata for the main UBP amount."
+Claude2v1,2024-04-11 14:12:32,What is UBP mapped to in MISMO? Provide JSON ouput,2048,0.1,0.5," Based on the JSON paths provided in the input, UBP (which I assume stands for Unscheduled Principal Balance) is mapped to the following in MISMO:
+
+```json
+{
+  ""MISMOAmount"": ""//DOCUMENT/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/DATA_MODIFICATION/DATA_MODIFICATION_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""AttributeExtension"": ""//MESSAGE/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/DATA_MODIFICATION/DATA_MODIFICATION_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""CurrencyURI"": ""//DOCUMENT/DEAL_SETS/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""DataNotSuppliedReasonType"": ""//MESSAGE/DEAL_SETS/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""DataNotSuppliedReasonTypeAdditionalDescription"": ""//DOCUMENT/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/SERVICING_TRANSFER/SERVICING_TRANSFER_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""DataNotSuppliedReasonTypeOtherDescription"": ""//MESSAGE/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/SERVICING_TRANSFER/SERVICING_TRANSFER_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""SensitiveIndicator"": ""//DOCUMENT/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/WORKOUT_EVALUATION/WORKOUT_EVALUATION_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""xlink:MISMOresourceLink"": ""//""
+}
+```
+
+The main mapping is to the path:
+
+```
+//DOCUMENT/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/DATA_MODIFICATION/DATA_MODIFICATION_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount
+```
+
+Which represents the Unscheduled Principal Amount field under the Pool Details section."
+Claude2v1,2024-04-11 14:14:35,What is UBP mapped to in MISMO? Provide JSON ouput,2048,0.1,0.8," Based on the JSON paths provided in the input, UBP (which I assume stands for Unscheduled Principal Balance) is mapped to the following MISMO elements:
+
+```json
+{
+  ""MISMOAmount"": ""//DOCUMENT/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/DATA_MODIFICATION/DATA_MODIFICATION_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""AttributeExtension"": ""//MESSAGE/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/DATA_MODIFICATION/DATA_MODIFICATION_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"", 
+  ""CurrencyURI"": ""//DOCUMENT/DEAL_SETS/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""DataNotSuppliedReasonType"": ""//MESSAGE/DEAL_SETS/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""DataNotSuppliedReasonTypeAdditionalDescription"": ""//DOCUMENT/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/SERVICING_TRANSFER/SERVICING_TRANSFER_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""DataNotSuppliedReasonTypeOtherDescription"": ""//MESSAGE/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/SERVICING_TRANSFER/SERVICING_TRANSFER_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""SensitiveIndicator"": ""//DOCUMENT/DEAL_SETS/DEAL_SET_SERVICES/DEAL_SET_SERVICE[1]/WORKOUT_EVALUATION/WORKOUT_EVALUATION_REQUEST/DEAL_SET/POOL/POOL_DETAIL/PoolUnscheduledPrincipalAmount"",
+  ""xlink:MISMOresourceLink"": ""//""
+}
+```
+
+The main mapping is to the `PoolUnscheduledPrincipalAmount` element at various paths representing different MISMO documents and contexts. The other elements provide additional attributes or metadata for the main UBP amount."
+Claude2v1,2024-04-11 14:16:43,"What is UBP mapped to in MISMO? If information is not found, reply not found.",2048,0.1,0.8," Based on the text provided, I did not find a clear mapping for ""UBP"" to MISMO. The text mentions ""UPBTotalAmount"" as mapping to ""MISMOAmount"", and ""UPB"" in the context of ""UPB Variance Tolerance Maximum Amount"", but does not clearly state what UBP maps to. Since a mapping was not found, my response is:
+
+not found"
+Claude2v1,2024-04-11 14:20:12,"What is UBP mapped to in MISMO? If information is not found, reply with the nearest match of items.",2048,0.1,0.8," Based on the text provided, it looks like UBP (unpaid principal balance) is mapped to the MISMO element LoanAcquisitionActualUPBAmount. This element appears in several places:
+
+- SERVICING_DETAIL/LoanAcquisitionActualUPBAmount
+- CREDIT_RESPONSE/LOANS/LOAN/SERVICING_DETAIL/LoanAcquisitionActualUPBAmount
+- LOANS/LOAN/SERVICING_DETAIL/LoanAcquisitionActualUPBAmount
+- FLOOD_RESPONSE/LOANS/LOAN/SERVICING_DETAIL/LoanAcquisitionActualUPBAmount
+- TITLE_RESPONSE/TITLE_PRODUCTS/TITLE_PRODUCT/TITLE_COMMITMENT/TITLE_EXISTING_LOANS_AND_LIABILITIES_INFORMATION/LOANS/LOAN/SERVICING_DETAIL/LoanAcquisitionActualUPBAmount
+- TITLE_RESPONSE/TITLE_PRODUCTS/TITLE_PRODUCT/TITLE_POLICIES/TITLE_POLICY/LOANS/LOAN/SERVICING_DETAIL/LoanAcquisitionActualUPBAmount
+
+So it looks like UBP is mapped to LoanAcquisitionActualUPBAmount across multiple areas of the MISMO standard."

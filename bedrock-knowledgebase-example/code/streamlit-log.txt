@@ -4,20 +4,6 @@ Collecting usage statistics. To deactivate, set browser.gatherUsageStats to Fals
 
   You can now view your Streamlit app in your browser.
 
-  Network URL: http://169.255.254.1:8532
-  External URL: http://44.194.192.59:8532
+  Network URL: http://169.255.254.1:8533
+  External URL: http://54.83.37.5:8533
 
-2024-04-10 14:28:54.866 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/conda/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 542, in _run_script
-    exec(code, module.__dict__)
-  File "/home/sagemaker-user/aws-bedrock-example/bedrock-knowledgebase-example/code/app-kb.py", line 105, in <module>
-    curr_datetime = datetime.now(timezone(timedelta(hours=-5), 'EST')).strftime('%Y-%m-%d %H:%M:%S')
-NameError: name 'timedelta' is not defined
-2024-04-10 14:28:56.287 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/conda/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 542, in _run_script
-    exec(code, module.__dict__)
-  File "/home/sagemaker-user/aws-bedrock-example/bedrock-knowledgebase-example/code/app-kb.py", line 105, in <module>
-    curr_datetime = datetime.now(timezone(timedelta(hours=-5), 'EST')).strftime('%Y-%m-%d %H:%M:%S')
-NameError: name 'timedelta' is not defined
