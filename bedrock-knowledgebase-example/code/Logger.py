@@ -7,11 +7,11 @@ class Logger:
         # user = input("ENTER NAME FOR LOGGING: ")
         # self.user = user
         self.file_Llama = "Log_Llama.csv"
-        self.file_Clause2 = "Log_Claude_2.csv"
-        # self.file_Clause3 = "Log_Claude_3.csv"
+        self.file_Claude2 = "Log_Claude_2.csv"
+        self.file_Claude3 = "Log_Claude_3.csv"
         self.init_CSV(self.file_Llama)
-        self.init_CSV(self.file_Clause2)
-        # self.init_CSV(self.file_Clause3)
+        self.init_CSV(self.file_Claude2)
+        self.init_CSV(self.file_Claude3)
         
     #create CSV files and add rows
     def init_CSV(self, filename):
@@ -29,7 +29,9 @@ class Logger:
         if modelName == "Llama2_13B":
             fileName = self.file_Llama
         if modelName == "Claude2v1":
-            fileName = self.file_Clause2
+            fileName = self.file_Claude2
+        if modelName == "Claude 3-Sonnet":
+            fileName = self.file_Claude3
             
             
         with open(fileName, 'r', newline='') as file:

@@ -216,3 +216,16 @@ Claude2v1,2024-04-11 14:20:12,"What is UBP mapped to in MISMO? If information is
 - TITLE_RESPONSE/TITLE_PRODUCTS/TITLE_PRODUCT/TITLE_POLICIES/TITLE_POLICY/LOANS/LOAN/SERVICING_DETAIL/LoanAcquisitionActualUPBAmount
 
 So it looks like UBP is mapped to LoanAcquisitionActualUPBAmount across multiple areas of the MISMO standard."
+Claude2v1,2024-04-18 13:49:08,What is MISMO,2048,0.3,0.5," Based on the text provided, it looks like MISMO (Mortgage Industry Standards Maintenance Organization) is using these data elements and code values to standardize different types of mortgage data and metadata.
+
+Some key things I noticed:
+
+- DataItemChangeType - defines different types of changes to data items (add, delete, update)
+
+- DataNotSuppliedReasonType - defines reasons why a particular data point may not be supplied (not collected, not received, not relevant, omitted, other)
+
+- DataSourceType - defines standard codes for different sources of data
+
+So in summary, MISMO seems to be creating a standardized vocabulary and set of code values to facilitate sharing and common understanding of mortgage data between different systems and organizations. This allows the industry to more easily exchange and interpret mortgage data.
+
+The text snippets define some of these standardized data elements and code lists that MISMO has published as part of its standards."

@@ -37,8 +37,7 @@ class BedrockProcessing():
         response = self.bedrock_agent.list_knowledge_bases()
         response['knowledgeBaseSummaries']
         #knowledgeBaseId = response['knowledgeBaseSummaries'][0]['knowledgeBaseId']
-        # knowledgeBaseId ='X0VZNMXW57' #Vivian's KB
-        knowledgeBaseId = 'WPONCJAUDB' #Jonathan's KB
+        knowledgeBaseId = 'UJALV2PYR8' #Jonathan's KB
         return knowledgeBaseId
     
     def get_knowledgebase_response(self, prompt):
@@ -93,6 +92,36 @@ class BedrockProcessing():
         print(response_body)
         #print(type(references))
         return(response_body['completion'])
+    
+    def get_response_from_bedrock_model_claude3(self, prompt, max_gen_len, temperature, top_p):
+        model_id= "anthropic.claude-3-sonnet-20240229-v1:0"
+
+        body=json.dumps(
+                    {
+                        "anthropic_version": "bedrock-2023-05-31",
+                        "max_tokens": max_gen_len,
+                        "temperature": temperature,
+                        "top_p": top_p,
+                        "messages": [
+                            {
+                                "role": "user",
+                                # "content": [{"type": "text", "text": prompt}],
+                                "content": [{"type": "text", "text": f"""\n\nHuman: {prompt}"\n\nAssistant:"""}],
+                            }
+                        ],
+                    }
+                )
+
+        response = self.bedrock_runtime.invoke_model(
+                                                            body=body, #tab'bytes'|file,
+                                                            contentType='application/json',
+                                                            accept='application/json',
+                                                            modelId= model_id
+                                                        )
+        response_body = json.loads(response.get('body').read())
+        #print(response_body)
+        #print(type(references))
+        return(response_body.get("content")[0]['text'])
     
 #         def get_response_from_bedrock_model_claude3(self, prompt, max_gen_len, temperature, top_p): #NEEDS WORK TODO
 #         model_id= "anthropic.claude-3-sonnet-20240229-v1:0"
