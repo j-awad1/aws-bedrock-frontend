@@ -157,12 +157,12 @@ class BedrockProcessing():
         if model=="Llama2_13B":
             print(f"response from llama2 model!!!")
             response = self.get_response_from_bedrock_model_llama2(prompt, max_gen_len, temperature, top_p)
-        else:
+        if model=="Claude2v1":
             print(f"response from claude2v1 model!!!")
             response = self.get_response_from_bedrock_model_claude2v1(prompt, max_gen_len, temperature, top_p)
-        # if model=="Claude 3 Sonnet":
-        #     print(f"response from claude3 model!!!")
-        #     response = self.get_response_from_bedrock_model_claude3(prompt, max_gen_len, temperature, top_p)
+        else:
+            print(f"response from claude3 model!!!")
+            response = self.get_response_from_bedrock_model_claude3(prompt, max_gen_len, temperature, top_p)
         response = {"response": response, 'location': references}
         return response
         

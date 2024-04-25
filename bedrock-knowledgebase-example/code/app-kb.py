@@ -8,7 +8,6 @@ import pytz
 logger=Logger()
 br=BedrockProcessing()
 
-#import streamlit as st
 #TODO - drop down of file format
 # Langchain "gaurd" implementation
 st.header("Bedrock Knowledgebase")
@@ -62,10 +61,11 @@ model_name = st.selectbox("Select Model:", ["","Llama2_13B", "Claude2v1","Claude
 max_gen_len = st.slider("Maximum Length Generation:", min_value=0, max_value=4096, value=(2048))
 temperature = st.slider("Temperature:", min_value=0.0, max_value=1.0, value=(0.3))
 top_p = st.slider("Top_p:", min_value=0.0, max_value=1.0, value=(0.5))
+response_type = st.selectbox("Select Output Response Type:", ["","JSON", "Markdown","CSV", "Text"], key="OutputType")
 # print(f"Model name Selected = {model_name}")
 # print(f"Max Length Selected = {max_gen_len}")
 # print(f"Temperature Selected = {temperature}")
-# st.write('TEMP: ', temperature)
+st.write('RESPONSE: ', response_type)
 # print(f"Top P Selected = {top_p}")
 prompt = prompt.strip()
 
@@ -82,8 +82,11 @@ end_session_button = st.button("End Session")
 if 'history' not in st.session_state:
     st.session_state['history'] = []
 
-    
-    
+def updateResponseType(prompt, response_type):
+    if response_type is not None:
+        prompt = prompt + f"Provide {response_type} output"
+        return prompt
+
 # Handling user input and responses
 if submit_button and prompt:
     event = {
@@ -92,7 +95,9 @@ if submit_button and prompt:
     }
 
     print(event)
-    #llama_response, location = br.get_response_from_becrock_model_llama2(prompt)
+    # update prompt based on output response type
+    updateResponseType(prompt, response_type)
+    st.write('NEW PROMPT: ', prompt)
     
     bedrock_response =br.get_bedrock_model_response(prompt, model_name, max_gen_len, temperature, top_p)
     print(f"bedrock_response type ={type(bedrock_response)}")
@@ -111,7 +116,8 @@ if submit_button and prompt:
     st.session_state['history'].append({"question":prompt, "answer":response, "model":model_name, "max_gen_len":max_gen_len, "temperature":temperature, "top_p":top_p, "refrences":','.join(location)})
     st.session_state['trace_data'] = response
     # log_data = st.session_state["history"]
-    
+
+
 if end_session_button:
     st.session_state['history'].append({"question": "Session Ended", "answer": "Thank you for using Enterprise Architect Agent!"})
     event = {
@@ -134,8 +140,6 @@ for chat in reversed(st.session_state['history']):
     st.text_area("Q:", value=chat["question"], height=50, key=str(chat)+"q", disabled=True)
     st.text_area(f"{chat['model']}:", value=chat["answer"], height=100, key=str(chat)+"a")
     st.text_area("References:", value=chat["refrences"], height=20,key=str(chat)+"r", disabled=True)
-
-
 
 
 

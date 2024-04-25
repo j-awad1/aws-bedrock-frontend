@@ -4,24 +4,9 @@ Collecting usage statistics. To deactivate, set browser.gatherUsageStats to fals
 
   You can now view your Streamlit app in your browser.
 
-  Network URL: http://169.255.254.1:8505
-  External URL: http://54.83.37.5:8505
+  Network URL: http://169.255.255.2:8502
+  External URL: http://54.167.126.47:8502
 
-2024-04-18 17:50:01.652 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/conda/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 584, in _run_script
-    exec(code, module.__dict__)
-  File "/home/sagemaker-user/aws-bedrock-frontend/bedrock-knowledgebase-example/code/app-kb.py", line 109, in <module>
-    logger.log_data(model_name, log_data)
-  File "/home/sagemaker-user/aws-bedrock-frontend/bedrock-knowledgebase-example/code/Logger.py", line 34, in log_data
-    fileName ==self.file_Clause3
-UnboundLocalError: local variable 'fileName' referenced before assignment
-2024-04-18 17:57:01.017 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/conda/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 584, in _run_script
-    exec(code, module.__dict__)
-  File "/home/sagemaker-user/aws-bedrock-frontend/bedrock-knowledgebase-example/code/app-kb.py", line 109, in <module>
-    logger.log_data(model_name, log_data)
-  File "/home/sagemaker-user/aws-bedrock-frontend/bedrock-knowledgebase-example/code/Logger.py", line 34, in log_data
-    fileName ==self.file_Claude3
-UnboundLocalError: local variable 'fileName' referenced before assignment
+Using Existing Log_Llama.csv Log File
+Using Existing Log_Claude_2.csv Log File
+Using Existing Log_Claude_3.csv Log File
