@@ -84,8 +84,8 @@ if 'history' not in st.session_state:
 
 def updateResponseType(prompt, response_type):
     if response_type is not None:
-        prompt = prompt + f"Provide {response_type} output"
-        return prompt
+        newPrompt = prompt + f" Provide {response_type} output"
+    return newPrompt
 
 # Handling user input and responses
 if submit_button and prompt:
@@ -96,8 +96,8 @@ if submit_button and prompt:
 
     print(event)
     # update prompt based on output response type
-    updateResponseType(prompt, response_type)
-    st.write('NEW PROMPT: ', prompt)
+    prompt_updated = updateResponseType(prompt, response_type)
+    # st.write('NEW PROMPT: ', prompt_updated)
     
     bedrock_response =br.get_bedrock_model_response(prompt, model_name, max_gen_len, temperature, top_p)
     print(f"bedrock_response type ={type(bedrock_response)}")

@@ -49,7 +49,6 @@ with open("/opt/ml/metadata/resource-metadata.json", "r") as f:
 if spaceName:
     response = client.describe_space(DomainId = domainId, 
                           SpaceName=spaceName)
-    print("hello world!!!!!!")
     url =  response['Url']
     streamlit_url = url+f"/proxy/{port_number}/"
 else:
