@@ -36,7 +36,8 @@ class BedrockProcessing():
     def get_knowledgebase_id(self):
         response = self.bedrock_agent.list_knowledge_bases()
         response['knowledgeBaseSummaries']
-        knowledgeBaseId = response['knowledgeBaseSummaries'][0]['knowledgeBaseId']
+        #knowledgeBaseId = response['knowledgeBaseSummaries'][0]['knowledgeBaseId']
+        knowledgeBaseId = 'UJALV2PYR8' #Jonathan's KB
         return knowledgeBaseId
     
     def get_knowledgebase_response(self, prompt):
@@ -48,10 +49,10 @@ class BedrockProcessing():
             knowledge_text = result['content']['text']
         return(knowledge_text)
  
-    def get_response_from_bedrock_model_llama2(self, prompt):
-        max_gen_len = 128
-        temperature = 0.1
-        top_p = 0.9
+    def get_response_from_bedrock_model_llama2(self, prompt, max_gen_len, temperature, top_p):
+        #max_gen_len = 2048
+        # temperature = 0.1
+        # top_p = 0.9
         model_id='meta.llama2-70b-chat-v1'
         accept = "application/json"
         content_type = "application/json"
@@ -71,14 +72,14 @@ class BedrockProcessing():
         response_body = json.loads(response.get('body').read())
         return response_body['generation']
         
-    def get_response_from_bedrock_model_claude21(self,prompt):
+    def get_response_from_bedrock_model_claude2v1(self, prompt, max_gen_len, temperature, top_p):
         model_id= "anthropic.claude-v2:1"
-    
+
         body = json.dumps({
                                     "prompt": f"""\n\nHuman: {prompt}"\n\nAssistant:""",
-                                    "max_tokens_to_sample": 4096,
-                                    "temperature": 0.1,
-                                    "top_p": 0.9,
+                                    "max_tokens_to_sample": max_gen_len,
+                                    "temperature": temperature,
+                                    "top_p": top_p,
                                     
                                 })
         response = self.bedrock_runtime.invoke_model(
@@ -88,11 +89,62 @@ class BedrockProcessing():
                                                             modelId= model_id
                                                         )
         response_body = json.loads(response.get('body').read())
-        #print(response_body)
+        print(response_body)
         #print(type(references))
         return(response_body['completion'])
+    
+    def get_response_from_bedrock_model_claude3(self, prompt, max_gen_len, temperature, top_p):
+        model_id= "anthropic.claude-3-sonnet-20240229-v1:0"
 
-    def get_bedrock_model_response(self, prompt, model):
+        body=json.dumps(
+                    {
+                        "anthropic_version": "bedrock-2023-05-31",
+                        "max_tokens": max_gen_len,
+                        "temperature": temperature,
+                        "top_p": top_p,
+                        "messages": [
+                            {
+                                "role": "user",
+                                # "content": [{"type": "text", "text": prompt}],
+                                "content": [{"type": "text", "text": f"""\n\nHuman: {prompt}"\n\nAssistant:"""}],
+                            }
+                        ],
+                    }
+                )
+
+        response = self.bedrock_runtime.invoke_model(
+                                                            body=body, #tab'bytes'|file,
+                                                            contentType='application/json',
+                                                            accept='application/json',
+                                                            modelId= model_id
+                                                        )
+        response_body = json.loads(response.get('body').read())
+        #print(response_body)
+        #print(type(references))
+        return(response_body.get("content")[0]['text'])
+    
+#         def get_response_from_bedrock_model_claude3(self, prompt, max_gen_len, temperature, top_p): #NEEDS WORK TODO
+#         model_id= "anthropic.claude-3-sonnet-20240229-v1:0"
+    
+#         body = json.dumps({
+#                                     "prompt": f"""\n\nHuman: {prompt}"\n\nAssistant:""",
+#                                     "max_tokens": max_gen_len,
+#                                     "temperature": temperature,
+#                                     "top_p": top_p,
+                                    
+#                                 })
+#         response = self.bedrock_runtime.invoke_model(
+#                                                             body=body, #tab'bytes'|file,
+#                                                             contentType='application/json',
+#                                                             accept='application/json',
+#                                                             modelId= model_id
+#                                                         )
+#         response_body = json.loads(response.get('body').read())
+#         print(response_body)
+#         #print(type(references))
+#         return(response_body['completion'])
+
+    def get_bedrock_model_response(self, prompt, model, max_gen_len, temperature, top_p):
         kb_response=self.get_knowledge_response_using_pagination(prompt)
         kb_text=kb_response['prompt']
         references=kb_response['location']
@@ -104,52 +156,55 @@ class BedrockProcessing():
             """
         if model=="Llama2_13B":
             print(f"response from llama2 model!!!")
-            response = self.get_response_from_bedrock_model_llama2(prompt)
+            response = self.get_response_from_bedrock_model_llama2(prompt, max_gen_len, temperature, top_p)
+        if model=="Claude2v1":
+            print(f"response from claude2v1 model!!!")
+            response = self.get_response_from_bedrock_model_claude2v1(prompt, max_gen_len, temperature, top_p)
         else:
-            print(f"response from claude2 model!!!")
-            response = self.get_response_from_bedrock_model_claude21(prompt)
+            print(f"response from claude3 model!!!")
+            response = self.get_response_from_bedrock_model_claude3(prompt, max_gen_len, temperature, top_p)
         response = {"response": response, 'location': references}
         return response
         
         
-    def get_response_from_bedrock_model(self,prompt):
+#     def get_response_from_bedrock_model(self,prompt):
         
-        kb_response=self.get_knowledge_response_using_pagination(prompt)
-        kb_text=kb_response['prompt']
-        references=kb_response['location']
+#         kb_response=self.get_knowledge_response_using_pagination(prompt)
+#         kb_text=kb_response['prompt']
+#         references=kb_response['location']
         
-        prompt = f"""{prompt} using following 
-            <text>
-            {self.get_knowledgebase_response(prompt)}
-            <text>
-            """
-        """
-        body = json.dumps(
-                            {
-                                "inputText":prompt,
-                                "textGenerationConfig":{
-                                    "maxTokenCount":256,
-                                    "stopSequences":[],
-                                    "temperature":0,
-                                    "topP":1
-                                }
-                            }
-                        )
-        """
-        body = json.dumps({
-                                "prompt": f"""\n\nHuman: {prompt}"\n\nAssistant:""",
-                                "max_tokens_to_sample": 4096,
-                                "temperature": 0.1,
-                                "top_p": 0.9,
+#         prompt = f"""{prompt} using following 
+#             <text>
+#             {self.get_knowledgebase_response(prompt)}
+#             <text>
+#             """
+#         """
+#         body = json.dumps(
+#                             {
+#                                 "inputText":prompt,
+#                                 "textGenerationConfig":{
+#                                     "maxTokenCount":256,
+#                                     "stopSequences":[],
+#                                     "temperature":0,
+#                                     "topP":1
+#                                 }
+#                             }
+#                         )
+#         """
+#         body = json.dumps({
+#                                 "prompt": f"""\n\nHuman: {prompt}"\n\nAssistant:""",
+#                                 "max_tokens_to_sample": 4096,
+#                                 "temperature": 0.1,
+#                                 "top_p": 0.9,
                                 
-                            })
-        response = self.bedrock_runtime.invoke_model(
-                                                        body=body, #tab'bytes'|file,
-                                                        contentType='application/json',
-                                                        accept='application/json',
-                                                        modelId=self.modelId
-                                                    )
-        response_body = json.loads(response.get('body').read())
-        #print(response_body)
-        #print(type(references))
-        return(response_body['completion'], references)
+#                             })
+#         response = self.bedrock_runtime.invoke_model(
+#                                                         body=body, #tab'bytes'|file,
+#                                                         contentType='application/json',
+#                                                         accept='application/json',
+#                                                         modelId=self.modelId
+#                                                     )
+#         response_body = json.loads(response.get('body').read())
+#         #print(response_body)
+#         #print(type(references))
+#         return(response_body['completion'], references)
